@@ -9,7 +9,6 @@
 #include <ctime>
 #include <algorithm>
 #include <string>
-#include <stdint.h>
 
 
 #define DIRECT 0
@@ -58,7 +57,7 @@ public:
 
     void results(unsigned number_of_experiment, clock_t time);
 
-    vector<int64_t> cache_size_of_experiment;
+    vector<unsigned> cache_size_of_experiment;
     char* buffer;
 };
 
