@@ -59,17 +59,20 @@ void cache::creating(unsigned num_of_experiment) {
 }
 
 void cache::heating(unsigned num_of_experiment) {
+    cout << "HELLO!!!!1" << endl;
     for (unsigned i = 0; i < 10; ++i) {
         for (unsigned num = 1;
         num < cache_size_of_experiment[num_of_experiment]; ++num) {
             buffer[num] = static_cast<char>(rand_r(0) % 255 - 128);
         }
     }
+    cout << "HELLO!!!!2" << endl;
 }
 
 //-------------------------------------PASSES-----------------------------------------
 
 clock_t cache::direct_pass(unsigned num_of_experiment) {
+    cout << "HELLO!!!!3" << endl;
     clock_t start = clock();
     for (unsigned i = 0; i < iter; ++i) {
         for (unsigned num = 1;
@@ -77,6 +80,7 @@ clock_t cache::direct_pass(unsigned num_of_experiment) {
             buffer[num] = static_cast<char>(rand_r(0) % 255 - 128);
         }
     }
+ cout << "HELLO!!!!4" << endl;
     clock_t stop = clock();
     return stop - start;
 }
