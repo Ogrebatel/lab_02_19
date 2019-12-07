@@ -150,10 +150,3 @@ void cache::results(unsigned number_of_experiment, clock_t time) {
     cout << "  results: " << std::endl;
     cout << "duration: " << time << " ms" << endl << endl;
 }
-
-int main() {
-    cache experiment;
-    experiment.start();
-
-    return 0;
-}
