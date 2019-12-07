@@ -20,9 +20,11 @@ cache::cache() {
 }
 
 void cache::start() {
-    for (int i = 0; i < 8; ++i) {
-        for (int j = 0; j < 3; ++j)
+    for (int j = 0; j < 3; ++j){
+        print_header(j);
+        for (int i = 0; i < 8; ++i) {
             entry(i, j);
+        }
     }
 }
 
@@ -36,18 +38,17 @@ void cache::entry(unsigned number_of_experiment, int type_of_pass) {
     switch (type_of_pass) {
         case DIRECT:
             time = direct_pass(number_of_experiment);
-            results("direct", number_of_experiment, time);
+            results(number_of_experiment, time);
             break;
         case BACKWARD:
             time = backward_pass(number_of_experiment);
-            results("backward", number_of_experiment, time);
+            results(number_of_experiment, time);
             break;
         case RANDOM:
             time = random_pass(number_of_experiment);
-            results("random", number_of_experiment, time);
+            results(number_of_experiment, time);
             break;
     }
-
     clearing();
 }
 
@@ -119,12 +120,26 @@ void cache::clearing() {
 
 //---------------------------------------------------------------------------------------------
 
-void cache::results(string type_of_pass, unsigned number_of_experiment, clock_t time) {
+void cache::print_header(unsigned type_of_pass) {
     cout << "investigation:" << endl;
-    cout << "  travel_variant: " << type_of_pass << endl;
+    switch(type_of_pass)
+    {
+        case DIRECT:
+            cout << "  travel_variant: direct" << endl;
+            break;
+        case BACKWARD:
+            cout << "  travel_variant: backward" << endl;
+            break;
+        case RANDOM:
+            cout << "  travel_variant: random" << endl;
+            break;
+    }
     cout << "  experiments: " << endl;
+}
+
+void cache::results(unsigned number_of_experiment, clock_t time) {
     cout << "     - experiment: " << endl;
-    cout << "  number: " << number_of_experiment << endl;
+    cout << "  number: " << number_of_experiment + 1 << endl;
     cout << "  input_data: " << endl;
     cout << "    buffer_size: " << cache_size_of_experiment[number_of_experiment] << " bytes" << endl;
     cout << "  results: " << std::endl;

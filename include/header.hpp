@@ -27,6 +27,27 @@ using std::cout;
 using std::endl;
 
 
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <ctime>
+#include <algorithm>
+
+
+#define DIRECT 0
+#define BACKWARD 1
+#define RANDOM 2
+
+#define l1 262144
+#define l3 6291456
+#define iter 1000
+
+using std::vector;
+using std::string;
+using std::cout;
+using std::endl;
+
+
 class cache {
 public:
     cache();
@@ -55,7 +76,9 @@ public:
 
     //---------------------------------------------------------------------------------------------
 
-    void results(string type_of_pass, unsigned number_of_experiment, clock_t time);
+    void print_header(unsigned type_of_pass);
+
+    void results(unsigned number_of_experiment, clock_t time);
 
     vector<long> cache_size_of_experiment;
     char* buffer;
