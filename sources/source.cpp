@@ -60,7 +60,7 @@ void cache::creating(unsigned num_of_experiment) {
 
 void cache::heating(unsigned num_of_experiment) {
     for (unsigned i = 0; i < 10; ++i) {
-        for (unsigned num = 1;
+        for (unsigned num = 0;
         num < cache_size_of_experiment[num_of_experiment]; ++num) {
             buffer[num] = static_cast<char>(rand_r(&i) % 255 - 128);
         }
@@ -72,7 +72,7 @@ void cache::heating(unsigned num_of_experiment) {
 clock_t cache::direct_pass(unsigned num_of_experiment) {
     clock_t start = clock();
     for (unsigned i = 0; i < iter; ++i) {
-        for (unsigned num = 1;
+        for (unsigned num = 0;
         num < cache_size_of_experiment[num_of_experiment]; ++num) {
             buffer[num] = static_cast<char>(rand_r(&i) % 255 - 128);
         }
@@ -84,8 +84,8 @@ clock_t cache::direct_pass(unsigned num_of_experiment) {
 clock_t cache::backward_pass(unsigned num_of_experiment) {
     clock_t start = clock();
     for (unsigned i = 0; i < iter; ++i) {
-        for (unsigned num = cache_size_of_experiment[num_of_experiment] - 2;
-        num > 0; --num) {
+        for (unsigned num = cache_size_of_experiment[num_of_experiment] - 1;
+        num > 1; --num) {
             buffer[num] = static_cast<char>(rand_r(&num) % 255 - 128);
         }
     }
