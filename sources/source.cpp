@@ -59,7 +59,7 @@ void cache::creating(unsigned num_of_experiment) {
 }
 
 void cache::heating(unsigned num_of_experiment) {
-    for (unsigned i = 0; i < iter; ++i) {
+    for (unsigned i = 0; i < 10; ++i) {
         for (unsigned num = 0;
         num < cache_size_of_experiment[num_of_experiment]; ++num) {
             buffer[num] = static_cast<char>(rand_r(0) % 255 - 128);
