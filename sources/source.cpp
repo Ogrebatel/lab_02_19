@@ -55,7 +55,9 @@ void cache::entry(unsigned number_of_experiment, int type_of_pass) {
 }
 
 void cache::creating(unsigned num_of_experiment) {
-    buffer = new char[cache_size_of_experiment[num_of_experiment]];
+    cout << "HELLO!!!!0" << endl;
+    buffer = new char [cache_size_of_experiment[num_of_experiment]];
+    cout << "HELLO!!!!00" << endl;
 }
 
 void cache::heating(unsigned num_of_experiment) {
