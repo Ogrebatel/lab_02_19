@@ -108,7 +108,7 @@ clock_t cache::random_pass(unsigned num_of_experiment) {
     for (unsigned i = 0; i < iter; ++i) {
         for (unsigned num = 0;
         num < cache_size_of_experiment[num_of_experiment]; ++num) {
-            buffer[current_num[num]] = static_cast<char>(rand_r(&i) % 255 - 128);
+        buffer[current_num[num]] = static_cast<char>(rand_r(&i) % 255 - 128);
         }
     }
     clock_t stop = clock();
