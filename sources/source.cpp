@@ -55,26 +55,21 @@ void cache::entry(unsigned number_of_experiment, int type_of_pass) {
 }
 
 void cache::creating(unsigned num_of_experiment) {
-    cout << "HELLO!!!!0" << endl;
     buffer = new char [cache_size_of_experiment[num_of_experiment]];
-    cout << "HELLO!!!!00" << endl;
 }
 
 void cache::heating(unsigned num_of_experiment) {
-    cout << "HELLO!!!!1" << endl;
     for (unsigned i = 0; i < 10; ++i) {
         for (unsigned num = 1;
         num < cache_size_of_experiment[num_of_experiment]; ++num) {
             buffer[num] = static_cast<char>(rand_r(&i) % 255 - 128);
         }
     }
-    cout << "HELLO!!!!2" << endl;
 }
 
 //-------------------------------------PASSES-----------------------------------------
 
 clock_t cache::direct_pass(unsigned num_of_experiment) {
-    cout << "HELLO!!!!3" << endl;
     clock_t start = clock();
     for (unsigned i = 0; i < iter; ++i) {
         for (unsigned num = 1;
@@ -82,7 +77,6 @@ clock_t cache::direct_pass(unsigned num_of_experiment) {
             buffer[num] = static_cast<char>(rand_r(&i) % 255 - 128);
         }
     }
- cout << "HELLO!!!!4" << endl;
     clock_t stop = clock();
     return stop - start;
 }
@@ -102,7 +96,7 @@ clock_t cache::backward_pass(unsigned num_of_experiment) {
 clock_t cache::random_pass(unsigned num_of_experiment) {
     vector<int> current_num;
 
-    for (unsigned i = 1;
+    for (unsigned i = 0;
     i < cache_size_of_experiment[num_of_experiment]; ++i) {
         current_num.push_back(i);
     }
@@ -113,8 +107,8 @@ clock_t cache::random_pass(unsigned num_of_experiment) {
     clock_t start = clock();
     for (unsigned i = 0; i < iter; ++i) {
         for (unsigned num = 0;
-        num <= cache_size_of_experiment[num_of_experiment]; ++num) {
-            buffer[current_num[num]] = static_cast<char>(rand_r(0) % 255 - 128);
+        num < cache_size_of_experiment[num_of_experiment]; ++num) {
+            buffer[current_num[num]] = static_cast<char>(rand_r(&i) % 255 - 128);
         }
     }
     clock_t stop = clock();
