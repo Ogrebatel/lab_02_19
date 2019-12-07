@@ -119,7 +119,7 @@ clock_t cache::random_pass(unsigned num_of_experiment) {
 
 void cache::clearing() {
     cache_size_of_experiment.clear();
-    delete buffer;
+    delete []buffer;
 }
 
 //---------------------------------------------------------------------------------------------
