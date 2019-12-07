@@ -85,8 +85,8 @@ clock_t cache::backward_pass(unsigned num_of_experiment) {
     clock_t start = clock();
     for (unsigned i = 0; i < iter; ++i) {
         for (unsigned num = cache_size_of_experiment[num_of_experiment] - 1;
-        num > 1; --num) {
-            buffer[num] = static_cast<char>(rand_r(&start) % 255 - 128);
+        num > 0; --num) {
+            buffer[num] = static_cast<char>(rand_r(&i) % 255 - 128);
         }
     }
     clock_t stop = clock();
