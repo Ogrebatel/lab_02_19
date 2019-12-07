@@ -6,6 +6,7 @@
 TEST(Example, EmptyTest) {
     cache experiment;
     experiment.start();
+	EXPECT_EQ(true, true);
 }
 
 int main(int argc, char **argv) {
