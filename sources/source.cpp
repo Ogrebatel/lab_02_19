@@ -5,7 +5,9 @@
 cache::cache() {
     int x = 1;
 
-    for (; pow(2, x) < 0.5 * l1; ++x);
+    for (; pow(2, x) < 0.5 * l1; ++x){
+		continue;
+	}
 
     int n = 0;
     while (pow(2, x + n) < (1.5) * l3) {
@@ -16,7 +18,8 @@ cache::cache() {
     cache_size_of_experiment.push_back(1.5 * l3);
 
     for (int i = 0; i < cache_size_of_experiment.size(); ++i)
-        cout << i << " experiment: size = " << cache_size_of_experiment[i] << endl;
+        cout << i << " experiment: size = " 
+	<< cache_size_of_experiment[i] << endl;
 }
 
 void cache::start() {
@@ -31,7 +34,6 @@ void cache::start() {
 //--------------------------------------EXPERIMENT-----------------------------------------------
 
 void cache::entry(unsigned number_of_experiment, int type_of_pass) {
-
     clock_t time;
     creating(number_of_experiment);
     heating(number_of_experiment);
@@ -58,8 +60,9 @@ void cache::creating(unsigned num_of_experiment) {
 
 void cache::heating(unsigned num_of_experiment) {
     for (unsigned i = 0; i < iter; ++i) {
-        for (unsigned num = 0; num < cache_size_of_experiment[num_of_experiment]; ++num) {
-            buffer[num] = (char) (rand_r(0) % 255 - 128);
+        for (unsigned num = 0; 
+		num < cache_size_of_experiment[num_of_experiment]; ++num) {
+            buffer[num] = static_cast<char>(rand_r(0) % 255 - 128);
         }
     }
 }
@@ -69,7 +72,8 @@ void cache::heating(unsigned num_of_experiment) {
 clock_t cache::direct_pass(unsigned num_of_experiment) {
     clock_t start = clock();
     for (unsigned i = 0; i < iter; ++i) {
-        for (unsigned num = 0; num < cache_size_of_experiment[num_of_experiment]; ++num) {
+        for (unsigned num = 0; 
+		num < cache_size_of_experiment[num_of_experiment]; ++num) {
             buffer[num] = (char) (rand_r(0) % 255 - 128);
         }
     }
@@ -78,11 +82,11 @@ clock_t cache::direct_pass(unsigned num_of_experiment) {
 }
 
 clock_t cache::backward_pass(unsigned num_of_experiment) {
-
     clock_t start = clock();
     for (unsigned i = 0; i < iter; ++i) {
-        for (unsigned num = cache_size_of_experiment[num_of_experiment]; num > 0; --num) {
-            buffer[num] = (char) (rand_r(0) % 255 - 128);
+        for (unsigned num = cache_size_of_experiment[num_of_experiment];
+		num > 0; --num) {
+            buffer[num] = static_cast<char>(rand_r(0) % 255 - 128);
         }
     }
     clock_t stop = clock();
@@ -92,7 +96,8 @@ clock_t cache::backward_pass(unsigned num_of_experiment) {
 clock_t cache::random_pass(unsigned num_of_experiment) {
     vector<int> current_num;
 
-    for (unsigned i = 1; i < cache_size_of_experiment[num_of_experiment]; ++i) {
+    for (unsigned i = 1; 
+	i < cache_size_of_experiment[num_of_experiment]; ++i) {
         current_num.push_back(i);
     }
 
@@ -101,12 +106,11 @@ clock_t cache::random_pass(unsigned num_of_experiment) {
 
     clock_t start = clock();
     for (unsigned i = 0; i < iter; ++i) {
-        for (unsigned num = 0; num <= cache_size_of_experiment[num_of_experiment]; ++num) {
-            buffer[current_num[num]] = (char) (rand_r(0) % 255 - 128);
-
+        for (unsigned num = 0; 
+		num <= cache_size_of_experiment[num_of_experiment]; ++num) {
+            buffer[current_num[num]] = static_cast<char>(rand_r(0) % 255 - 128);
         }
     }
-
     clock_t stop = clock();
     return stop - start;
 }
@@ -122,7 +126,7 @@ void cache::clearing() {
 
 void cache::print_header(unsigned type_of_pass) {
     cout << "investigation:" << endl;
-    switch(type_of_pass)
+    switch (type_of_pass)
     {
         case DIRECT:
             cout << "  travel_variant: direct" << endl;
@@ -141,13 +145,13 @@ void cache::results(unsigned number_of_experiment, clock_t time) {
     cout << "     - experiment: " << endl;
     cout << "  number: " << number_of_experiment + 1 << endl;
     cout << "  input_data: " << endl;
-    cout << "    buffer_size: " << cache_size_of_experiment[number_of_experiment] << " bytes" << endl;
+    cout << "    buffer_size: " 
+		 << cache_size_of_experiment[number_of_experiment] << " bytes" << endl;
     cout << "  results: " << std::endl;
     cout << "duration: " << time << " ms" << endl << endl;
 }
 
 int main() {
-
     cache experiment;
     experiment.start();
 
