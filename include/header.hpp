@@ -9,6 +9,7 @@
 #include <ctime>
 #include <algorithm>
 #include <string>
+#include <stdint.h>
 
 
 #define DIRECT 0
@@ -43,9 +44,9 @@ public:
 
     clock_t direct_pass(unsigned num_of_experiment);
 
-    clock_t backward_pass (unsigned num_of_experiment);
+    clock_t backward_pass(unsigned num_of_experiment);
 
-    clock_t random_pass (unsigned num_of_experiment);
+    clock_t random_pass(unsigned num_of_experiment);
 
     //----------------------------------ALL_PASSES_HIGHER------------------------------------------
 
@@ -57,7 +58,7 @@ public:
 
     void results(unsigned number_of_experiment, clock_t time);
 
-    vector<int64> cache_size_of_experiment;
+    vector<int64_t> cache_size_of_experiment;
     char* buffer;
 };
 

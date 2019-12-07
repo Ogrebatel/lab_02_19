@@ -6,7 +6,7 @@ cache::cache() {
     int x = 1;
 
     for (; pow(2, x) < 0.5 * l1; ++x){
-	    continue;
+        continue;
     }
 
     int n = 0;
@@ -17,7 +17,7 @@ cache::cache() {
 
     cache_size_of_experiment.push_back(1.5 * l3);
 
-    for (int i = 0; i < cache_size_of_experiment.size(); ++i)
+    for (unsigned i = 0; i < cache_size_of_experiment.size(); ++i)
         cout << i << " experiment: size = "
     << cache_size_of_experiment[i] << endl;
 }
@@ -61,7 +61,7 @@ void cache::creating(unsigned num_of_experiment) {
 void cache::heating(unsigned num_of_experiment) {
     for (unsigned i = 0; i < iter; ++i) {
         for (unsigned num = 0;
-		num < cache_size_of_experiment[num_of_experiment]; ++num) {
+        num < cache_size_of_experiment[num_of_experiment]; ++num) {
             buffer[num] = static_cast<char>(rand_r(0) % 255 - 128);
         }
     }
@@ -73,7 +73,7 @@ clock_t cache::direct_pass(unsigned num_of_experiment) {
     clock_t start = clock();
     for (unsigned i = 0; i < iter; ++i) {
         for (unsigned num = 0;
-		num < cache_size_of_experiment[num_of_experiment]; ++num) {
+        num < cache_size_of_experiment[num_of_experiment]; ++num) {
             buffer[num] = static_cast<char>(rand_r(0) % 255 - 128);
         }
     }
